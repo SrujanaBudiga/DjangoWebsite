@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Custom URL Shortener - Analytics</title>
+    <style>
+        body {
+            background-color: #add8e6; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .data_link {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .url_link {
+            margin-bottom: 5px;
+        }
+        .link_element a {
+            color: blue;
+            text-decoration: none;
+        }
+        .stats_total {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .btn-cutt {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn-cutt:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="content" role="main" class="wyniki wyniki_all">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h1">All Links Analytics</h2>
+                </div>
+                <div class="url_options url_stats_o" id="1">
+                    <p class="data_link">April 2, 2022</p>
+                    <p class="url_link">https://www.codechef.com/ratings/all?filterBy=Country%3DIndia&itemsPerPage=15&order=asc&page=1&sortBy=global_rank</p>
+                    <p id="link" class="link_element">
+                        <a href="/analytics/cc-ranklist" class="short_url_l" target="blank">https://rr-url.herokuapp.com/cc-ranklist</a>
+                    </p>
+                    <div class="stats_total btn-cutt click_stats btn_norm">
+                        <div>Total clicks <strong class="allClicks">0</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Custom URL Shortener</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+</head>
+
+<body class="pace-done is_index_lout" bgcolor="cyan">
+    <main id="content" role="main">
+        <!-- Header Section -->
+        <section class="container-fluid mx-0 bg_cuttly_main_092021">
+            <div class="header__bg"></div>
+            <div class="mb-0">
+                <div class="container position-relative">
+                    <div class="row">
+                        <div class="dv_main col-md-6 cutt_main_b2">
+                            <h2 class="h1">URL Shortener</h2>
+                            <h3 class="h2 h2_index text-left text-white">All the features you need in one place. <br />
+                                Shorten, manage and track your links the easy way.</h3>
+                            <div class="butt_on mx-auto">
+                                <a href="#shorten" class="btn_m_l btn_m_l_1">Shorten</a>
+                                <a href="/all-analytics" class="btn_m_l btn_m_r" target="_new">Analytics</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mobile_bg text-right">
+                            <img src="images/Rebrandly.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shorten Section -->
+        <section class="bg_main" id="shorten" style="padding-bottom: 5%;">
+            <div class="container cutt_main_inp">
+                <div class="row">
+                    <div class="col-12 mt-4 py-2 mb-2">
+                        <form method="post" id="form_input">
+                            <div class="input-group">
+                                <input type="url" class="cutt_url w-50 p-4 rounded-12"
+                                    placeholder="Paste long url and shorten it" name="longurl" required />
+
+                                <input type="text" class="cutt_url w-25 p-4 rounded-12" placeholder="alias"
+                                    name="custom_name" style="margin-left: 5%;" />
+
+                                <button class="btn_cutt rounded-6 shortenit_b" role="button">Shorten</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 mt-4 py-2 mb-2" style="text-align: center; color: red;">
+                        <p>The alias name is already taken</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="results">
+                <!-- Shortened URL results will be displayed here -->
+            </div>
+
+            <div class="container" id="alert-box" style="display: none">
+                <div class="row py-4">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <div class="alert alert-success">
+                            <strong>Copied to clipboard!</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="container" id="analytics">
+            <div class="row py-4">
+                <div class="col-12">
+                    <h2 class="h1" style="text-align: center;">Link Analytics</h2>
+                </div>
+            </div>
+
+            <!-- Analytics Cards -->
+            <div class="row">
+                <!-- New Feature: Display analytics for each link -->
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Link Analytics</h5>
+                            <p class="card-subtitle mb-2 text-muted">April 2, 2022</p>
+                            <p class="card-text">
+                                Original URL: <a href="https://www.codechef.com/ratings/all?filterBy=Country%3DIndia&itemsPerPage=15&order=asc&page=1&sortBy=global_rank"
+                                    target="_blank">https://www.codechef.com/ratings/all?filterBy=Country%3DIndia&itemsPerPage=15&order=asc&page=1&sortBy=global_rank</a>
+                            </p>
+                            <p class="card-text">
+                                Shortened URL: <a href="https://rr-url.herokuapp.com/cc-ranklist" target="_blank">https://rr-url.herokuapp.com/cc-ranklist</a>
+                            </p>
+                            <p class="card-text">Total clicks: <span id="totalClicks">0</span></p>
+                            <!-- Additional Analytics can be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add a pie chart -->
+            <div class="row">
+                <div class="col-12">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+		
+        </section>
+
+        <footer class="footer-area footer--light">
+            <div class="mini-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright-text">
+                                <p><a href="https://www.o1codingclub.in/">O(1) Coding Club</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+
+    <script type="text/javascript" src="js/main.js">
+
+        // New Feature: Function to display alias taken error
+        function displayAliasTakenError() {
+            document.getElementById("aliasTakenError").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("aliasTakenError").style.display = "none";
+            }, 3000);
+        }
+	</script>
+	<script>
+        // Data for the pie chart
+        const labels = ['Desktop', 'Mobile'];
+        const data = [50, 50]; // Example data, replace with actual data
+
+        // Get the canvas element
+        const pieChartCanvas = document.getElementById('pieChart').getContext('2d');
+
+        // Create the pie chart
+        const pieChart = new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Device Clicks',
+                    data: data,
+                    backgroundColor: [
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Device Clicks Distribution'
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
